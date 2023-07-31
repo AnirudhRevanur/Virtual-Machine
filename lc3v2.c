@@ -112,7 +112,7 @@ void read_image_file(FILE* file)        //Reads the particular image/obj file
 }
 int read_image(const char* image_path)
 {
-    printf("Image File read\n");
+
     FILE* file = fopen(image_path, "rb");
     if (!file) { return 0; };
     read_image_file(file);
@@ -168,7 +168,7 @@ void handle_interrupt(int signal)
 }
 int main(int argc, const char* argv[])
 {
-    printf("Before if\n");
+
     if (argc < 2)
     {
         /* show usage string */
@@ -178,7 +178,7 @@ int main(int argc, const char* argv[])
     
     for (int j = 1; j < argc; ++j)
     {
-        printf("In for loop\n");
+
         if (!read_image(argv[j]))
         {
             printf("failed to load image: %s\n", argv[j]);
@@ -199,12 +199,10 @@ int main(int argc, const char* argv[])
     int running = 1;
     while (running)
     {
-        printf("Inside While\n");
+
         /* FETCH */
-        uint16_t instr = mem_read(reg[R_PC]++);     //Highlight check for incrementation
+        uint16_t instr = mem_read(reg[R_PC]++); 
         uint16_t op = instr >> 12;
-        printf("op=%d\n",op);
-        printf("instr=%d\n",instr);
         switch (op)                                 
         {
             case OP_ADD:
